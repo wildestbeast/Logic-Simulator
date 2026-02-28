@@ -79,11 +79,32 @@ public:
     
 };
 
+class NOT_Gate{
+private:
+    int inputA;
+public:
+    void getInput(int a){
+        if (a == 0 || a == 1)
+        {
+            inputA = a;
+        }
+        else
+        {
+            cout<<"Error. signals can only be 1 or 0";
+            inputA = 0;
+        }
+    }
+    int getOutput(){
+        if(inputA == 0) return 1;
+        return 0;
+    }
+};
+
 
 
 int main(){
 
-
+//-------------------------------------------------------------------------------------------
     /* cout<<"--- AND GATE ---"<<endl;
     cout<<"A    B    Out"<<endl;
     cout<<"0"<<"    0"<<"    "<<AND_Gate(0, 0)<<endl;
@@ -105,15 +126,29 @@ int main(){
     cout<<"0"<<"    "<<NOT_Gate(0)<<endl;
     cout<<"1"<<"    "<<NOT_Gate(1)<<endl;
     cout<<"----------------"<<endl;  */
-
-    AND_GATE and_gate;
+//-------------------------------------------------------------------------------------------
+  /*  AND_GATE and_gate;
     and_gate.getInput(1, 0);
     cout<<"Result of AND Gate for inputs 1 and 0: "<<and_gate.getOutput();
     cout<<endl;
 
-    OR_GATE or_gate;
+    OR_GATE or_gate;                                                                    PHASE 2 & 3
     or_gate.getInput(0, 0);
-    cout<<"Result of OR Gate for inputs 0 and 0: "<<or_gate.getOutput()<<endl;;
+    cout<<"Result of OR Gate for inputs 0 and 0: "<<or_gate.getOutput()<<endl;
+
+    NOT_Gate not_gate;
+    not_gate.getInput(1);
+    cout<<"Result of NOT Gate for input 1: "<<not_gate.getOutput();
 
     return 0;
+
+    */
+//--------------------------------------------------------------------------------------------
+OR_GATE myOrGate;
+NOT_Gate myNotGate;
+myOrGate.getInput(1, 0);
+myNotGate.getInput(myOrGate.getOutput());
+cout<<"NOR OUTPUT FOR INPUTS 1 & 0: "<<myNotGate.getOutput();
+return 0;
+
 }
