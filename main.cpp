@@ -41,7 +41,6 @@ public:
             inputB = b;
         }
         else{
-            cout<<"\nInvalid input. Input signal can not be any other than 0 & 1";
             inputA = 0;
             inputB = 0;
         }
@@ -66,7 +65,6 @@ public:
             inputB = b;
         }
         else{
-            cout<<"\nInvalid input. Input signal can not be any other than 0 & 1";
             inputA = 0;
             inputB = 0;
         }
@@ -90,7 +88,6 @@ public:
         }
         else
         {
-            cout<<"\nError. signals can only be 1 or 0";
             inputA = 0;
         }
     }
@@ -111,7 +108,6 @@ public:
             inputB = b;
         }
         else{
-            cout<<"\nInvalid input. Input signal can not be any other than 0 & 1";
             inputA = 0;
             inputB = 0;
         }
@@ -119,6 +115,24 @@ public:
     int getOutput(){
         if(inputA != inputB) return 1;
         return 0;
+    }
+};
+
+class HALF_ADDER{
+private:
+    XOR_GATE sum;
+    AND_GATE carry;
+
+public:
+    void getInput(int a, int b){
+        sum.getInput(a, b);
+        carry.getInput(a, b);
+    }
+    int getSum(){
+        return sum.getOutput();
+    }
+    int getCarry(){
+        return carry.getOutput();
     }
 };
 
@@ -173,10 +187,13 @@ cout<<"NOR OUTPUT FOR INPUTS 1 & 0: "<<myNotGate.getOutput();
 return 0;
 */
 //--------------------------------------------------------------------------------------------
-
+/*
 XOR_GATE sum;
-AND_GATE carry;
+AND_GATE carry;                                                                        PHASE 5
+*/
+//--------------------------------------------------------------------------------------------
 
+HALF_ADDER myAdder;
 int bitA, bitB;
 
 cout<<"--------- HALF ADDER ---------"<<endl;
@@ -186,13 +203,32 @@ cin >> bitA ;
 cout<<"Enter the second bit: ";
 cin >> bitB;
 
-sum.getInput(bitA, bitB);
+while((bitA != 0 && bitA !=1) || (bitB != 0 && bitB !=1)){
+    cout<<"\n[Error] Binary only! Please use 0 or 1.\n";
+
+    cout << "Enter the first bit again: "; 
+    cin >> bitA;
+    cout << "Enter the second bit again: ";
+    cin >> bitB;
+
+}
+//--------------------------------------------------------------------------------------------
+/*
+sum.getInput(bitA, bitB);                                                              PHASE 5
 carry.getInput(bitA, bitB);
 
 cout<<"\nSum: "<<sum.getOutput()<<endl;
 cout<<"Carry: "<<carry.getOutput()<<endl;
+*/
+//--------------------------------------------------------------------------------------------
 
-cout<<"\nBinary equivalent: "<<carry.getOutput()<<" "<<sum.getOutput()<<endl;
+myAdder.getInput(bitA, bitB);
+
+
+cout<<"\nSum: "<<myAdder.getSum()<<endl;
+cout<<"Carry: "<<myAdder.getCarry()<<endl;
+
+cout<<"\nBinary equivalent: "<<myAdder.getCarry()<<" "<<myAdder.getSum()<<endl;
 cout<<"\n--------- ---------- ---------"<<endl;
 
 }
