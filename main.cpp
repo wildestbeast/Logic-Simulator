@@ -41,7 +41,7 @@ public:
             inputB = b;
         }
         else{
-            cout<<"Invalid input. Input signal can not be any other than 0 & 1";
+            cout<<"\nInvalid input. Input signal can not be any other than 0 & 1";
             inputA = 0;
             inputB = 0;
         }
@@ -66,7 +66,7 @@ public:
             inputB = b;
         }
         else{
-            cout<<"Invalid input. Input signal can not be any other than 0 & 1";
+            cout<<"\nInvalid input. Input signal can not be any other than 0 & 1";
             inputA = 0;
             inputB = 0;
         }
@@ -90,7 +90,7 @@ public:
         }
         else
         {
-            cout<<"Error. signals can only be 1 or 0";
+            cout<<"\nError. signals can only be 1 or 0";
             inputA = 0;
         }
     }
@@ -100,7 +100,27 @@ public:
     }
 };
 
-
+class XOR_GATE{
+private:
+    int inputA;
+    int inputB;
+public:
+    void getInput(int a, int b){
+        if((a == 0 || a == 1) && (b == 0 || b == 1)){
+            inputA = a;
+            inputB = b;
+        }
+        else{
+            cout<<"\nInvalid input. Input signal can not be any other than 0 & 1";
+            inputA = 0;
+            inputB = 0;
+        }
+    }
+    int getOutput(){
+        if(inputA != inputB) return 1;
+        return 0;
+    }
+};
 
 int main(){
 
@@ -144,11 +164,35 @@ int main(){
 
     */
 //--------------------------------------------------------------------------------------------
+/*
 OR_GATE myOrGate;
 NOT_Gate myNotGate;
 myOrGate.getInput(1, 0);
-myNotGate.getInput(myOrGate.getOutput());
+myNotGate.getInput(myOrGate.getOutput());                                              PHASE 4
 cout<<"NOR OUTPUT FOR INPUTS 1 & 0: "<<myNotGate.getOutput();
 return 0;
+*/
+//--------------------------------------------------------------------------------------------
+
+XOR_GATE sum;
+AND_GATE carry;
+
+int bitA, bitB;
+
+cout<<"--------- HALF ADDER ---------"<<endl;
+
+cout<<"\nEnter the first bit: "; 
+cin >> bitA ;
+cout<<"Enter the second bit: ";
+cin >> bitB;
+
+sum.getInput(bitA, bitB);
+carry.getInput(bitA, bitB);
+
+cout<<"\nSum: "<<sum.getOutput()<<endl;
+cout<<"Carry: "<<carry.getOutput()<<endl;
+
+cout<<"\nBinary equivalent: "<<carry.getOutput()<<" "<<sum.getOutput()<<endl;
+cout<<"\n--------- ---------- ---------"<<endl;
 
 }
