@@ -136,6 +136,30 @@ public:
     }
 };
 
+class FULL_ADDER{
+private:
+    HALF_ADDER ha1;
+    HALF_ADDER ha2;
+    OR_GATE myORgate;
+
+public:
+    void getInput(int a, int b, int c_in){
+        ha1.getInput(a, b);
+
+        ha2.getInput(ha1.getSum(), c_in);
+
+        myORgate.getInput(ha1.getCarry(), ha2.getCarry());
+    }
+
+    int getSum(){
+        return ha2.getSum();
+    }
+
+    int getCarry(){
+        return myORgate.getOutput();
+    }
+};
+
 int main(){
 
 //-------------------------------------------------------------------------------------------
@@ -193,25 +217,7 @@ AND_GATE carry;                                                                 
 */
 //--------------------------------------------------------------------------------------------
 
-HALF_ADDER myAdder;
-int bitA, bitB;
 
-cout<<"--------- HALF ADDER ---------"<<endl;
-
-cout<<"\nEnter the first bit: "; 
-cin >> bitA ;
-cout<<"Enter the second bit: ";
-cin >> bitB;
-
-while((bitA != 0 && bitA !=1) || (bitB != 0 && bitB !=1)){
-    cout<<"\n[Error] Binary only! Please use 0 or 1.\n";
-
-    cout << "Enter the first bit again: "; 
-    cin >> bitA;
-    cout << "Enter the second bit again: ";
-    cin >> bitB;
-
-}
 //--------------------------------------------------------------------------------------------
 /*
 sum.getInput(bitA, bitB);                                                              PHASE 5
@@ -221,6 +227,28 @@ cout<<"\nSum: "<<sum.getOutput()<<endl;
 cout<<"Carry: "<<carry.getOutput()<<endl;
 */
 //--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
+/*
+
+HALF_ADDER myAdder;
+int bitA, bitB;
+
+cout<<"--------- HALF ADDER ---------"<<endl;
+
+cout<<"\nEnter the first bit: "; 
+cin >> bitA ;
+cout<<"Enter the second bit: ";
+cin >> bitB;
+                                                                                     PHASE 6
+while((bitA != 0 && bitA !=1) || (bitB != 0 && bitB !=1)){
+    cout<<"\n[Error] Binary only! Please use 0 or 1.\n";
+
+    cout << "Enter the first bit again: "; 
+    cin >> bitA;
+    cout << "Enter the second bit again: ";
+    cin >> bitB;
+
+}
 
 myAdder.getInput(bitA, bitB);
 
@@ -230,5 +258,33 @@ cout<<"Carry: "<<myAdder.getCarry()<<endl;
 
 cout<<"\nBinary equivalent: "<<myAdder.getCarry()<<" "<<myAdder.getSum()<<endl;
 cout<<"\n--------- ---------- ---------"<<endl;
+
+*/
+//--------------------------------------------------------------------------------------------
+FULL_ADDER myAdder;
+
+int bitA, bitB, bitC;
+
+cout<<"\nEnter the first bit: ";
+cin>>bitA;
+cout<<"\nEnter the second bit: ";
+cin>>bitB;
+cout<<"\nEnter the third bit: ";
+cin>>bitC;
+
+while((bitA!=0 && bitA!=1) || (bitB!=0 && bitB!=1) || (bitC!=0 && bitC!=1) ){
+    cout<<"\n[Error] Binary only! Please use 0 or 1."<<endl;
+
+    cout<<"\nEnter again, bitA: "; cin>>bitA;
+    cout<<"Enter again, bitB: "; cin>>bitB;
+    cout<<"Enter again, bitC: "; cin>>bitC;
+   
+}
+
+myAdder.getInput(bitA, bitB, bitC);
+cout<<"\nSum: "<<myAdder.getSum()<<endl;
+cout<<"Carry: "<<myAdder.getCarry()<<endl;
+
+cout<<"Binary Equivalent: "<<myAdder.getCarry()<<" "<<myAdder.getSum()<<endl;
 
 }
